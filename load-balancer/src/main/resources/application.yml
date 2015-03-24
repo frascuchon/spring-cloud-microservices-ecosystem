@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: load-balancer
+
+server:
+  port: 8000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.eureka-service.credentials.uri:http://localhost:8700}/eureka/
+

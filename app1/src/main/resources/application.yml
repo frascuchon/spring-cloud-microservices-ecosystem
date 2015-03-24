@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: app1
+
+server:
+  port: 9000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.eureka-service.credentials.uri:http://localhost:8700}/eureka/
+
+---
+spring:
+  profiles: dev
