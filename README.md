@@ -3,26 +3,26 @@ Micro services integration with Eureka Service Registry and Zuul as load balance
 
 2 microservices applications + 1 eureka server + 1 zuul load balancer
 
-# Structure
+## Structure
 * eureka : the eureka server spring boot project (single or cluster configuration)
 * load-balancer: the zuul proxy load balancer project
-* appX: simple microservices spring boot application registered to eureka server
+* app<X>: simple microservices spring boot application registered to eureka server
 
 
-#Prerequisites
+## Prerequisites
 * docker (https://docs.docker.com/)
 * dnsmaq (https://blog.amartynov.ru/archives/dnsmasq-docker-service-discovery/)
 
 
-# Build
-Run :
+## Build
+```bash
+./build.sh 
+```
 
-$>./build.sh 
-
-#  Launch 
-Run: 
-
-$>./start.sh 
+## Launch 
+```bash
+./start.sh 
+```
 
 You can see eureka control panel at http://eureka-server-8700:8700
 
