@@ -5,7 +5,7 @@ Micro services integration with Eureka Service Registry and Zuul as load balance
 
 # Structure
 
--<root>
- |-eureka : the eureka server spring boot project (single or cluster configuration)
- |-load-balancer: the zuul proxy load balancer project
- |- appX: simple microservices spring boot application registered to eureka server
+
+ -eureka : the eureka server spring boot project (single or cluster configuration)
+ -load-balancer: the zuul proxy load balancer project
+ -appX: simple microservices spring boot application registered to eureka server
