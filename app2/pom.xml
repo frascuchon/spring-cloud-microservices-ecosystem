@@ -10,6 +10,11 @@
 	<groupId>com.adesis</groupId>
 	<artifactId>app2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	<properties>
+		<start-class>app2.main.Application</start-class>
+	</properties>
+	
 
 	<dependencies>
 		<dependency>
@@ -17,5 +22,16 @@
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
 
 </project>

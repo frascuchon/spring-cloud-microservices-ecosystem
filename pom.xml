@@ -23,6 +23,7 @@
 
 	<properties>
 		<spring-cloud.version>1.0.0.RELEASE</spring-cloud.version>
+		<scala.version>2.11.6</scala.version>
 	</properties>
 
 	<repositories>
@@ -55,6 +56,10 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -90,8 +95,8 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.scala-tools</groupId>
-				<artifactId>maven-scala-plugin</artifactId>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
 			</plugin>
 
 			<plugin>
@@ -110,15 +115,15 @@
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
+						<source>1.7</source>
+						<target>1.7</target>
 					</configuration>
 				</plugin>
 
 				<!-- Configure scala plugin for mixed modules -->
 				<plugin>
-					<groupId>org.scala-tools</groupId>
-					<artifactId>maven-scala-plugin</artifactId>
+					<groupId>net.alchim31.maven</groupId>
+					<artifactId>scala-maven-plugin</artifactId>
 					<executions>
 						<execution>
 							<goals>
@@ -127,12 +132,6 @@
 							</goals>
 						</execution>
 					</executions>
-					<configuration>
-						<scalaVersion>${scala.version}</scalaVersion>
-						<args>
-							<arg>-target:jvm-1.8</arg>
-						</args>
-					</configuration>
 				</plugin>
 
 				<!-- Configure scala eclipse environment for mixed modules -->
@@ -184,6 +183,27 @@
 							</configuration>
 						</execution>
 					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>com.spotify</groupId>
+					<artifactId>docker-maven-plugin</artifactId>
+					<version>0.2.6</version>
+					<configuration>
+						<imageName>${project.artifactId}</imageName>
+						<baseImage>dockerfile/java:oracle-java8</baseImage>
+						<entryPoint>["java", "-jar", "-Xms256m", "-Xmx256m",
+							"/${project.build.finalName}.jar"]</entryPoint>
+						<!-- copy the service's jar file from target into the root directory 
+							of the image -->
+						<resources>
+							<resource>
+								<targetPath>/</targetPath>
+								<directory>${project.build.directory}</directory>
+								<include>${project.build.finalName}.jar</include>
+							</resource>
+						</resources>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>

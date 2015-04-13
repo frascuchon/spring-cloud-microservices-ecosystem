@@ -7,6 +7,7 @@ server:
 
 eureka:
   client:
+    registerWithEureka: false
     serviceUrl:
-      defaultZone: ${vcap.services.eureka-service.credentials.uri:http://localhost:8700}/eureka/
+      defaultZone: ${eureka.server.serviceUrl:http://localhost:8700/eureka/}
 
