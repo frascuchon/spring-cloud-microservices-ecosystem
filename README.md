@@ -26,6 +26,11 @@ Micro services integration with Eureka Service Registry and Zuul as load balance
 
 You can see eureka control panel at http://eureka-server-8700:8700
 
+## Refresh containers dns (after container stop)
+```bash
+docker/update-docker-dns.sh
+```
+
 
 
  
